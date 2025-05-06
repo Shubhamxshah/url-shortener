@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
-    "dev": "nodemon src/index.ts", 
-    "build": "tsc -b", 
-    "start": "node dist/index.js"
+    "test": "vitest",
+    "dev": "nodemon src/bin.ts",
+    "build": "tsc -b",
+    "start": "node dist/bin.js"
   },
   "keywords": [],
   "author": "",
@@ -14,10 +14,12 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
-    "@types/node": "^22.15.3"
+    "@types/node": "^22.15.3",
+    "vitest": "^3.1.3"
   }
 }
