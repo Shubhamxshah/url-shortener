@@ -1,5 +1,5 @@
 {
-  "name": "webhook-notif-system",
+  "name": "url-shortener",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
