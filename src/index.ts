@@ -1,47 +1,29 @@
 import express from "express";
-import { z } from "zod";
 
 export const app = express();
 app.use(express.json());
 
-const sumInput = z.object({
-  a: z.number(),
-  b: z.number(),
-});
+const urls = new Map();
 
-app.post("/sum", (req, res) => {
-  const parsedResponse = sumInput.safeParse(req.body);
+app.post("/api/shorten", (req, res) => {
+  const {url} = req.body;
 
-  if (!parsedResponse.success) {
-    res.status(411).json({
-      message: "Incorrect inputs",
-    });
-    return;
+  const id = generateRandom();
+  urls.set(id, url);
+
+  res.status(201).json({message: `shortened url is ${id}`})
+})
+
+app.get()
+
+function generateRandom() {
+  const letter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+  let result = '';
+
+  for (let i=0; i<6; i++){
+    result += letter[Math.floor(Math.random() * letter.length)]
   }
 
-  const answer = parsedResponse.data.a + parsedResponse.data.b;
-
-  res.json({
-    answer,
-  });
-});
-
-app.get("/sum", (req, res) => {
-  const parsedResponse = sumInput.safeParse({
-    a: Number(req.headers["a"]),
-    b: Number(req.headers["b"]),
-  });
-
-  if (!parsedResponse.success) {
-    res.status(411).json({
-      message: "Incorrect inputs",
-    });
-    return;
-  }
-
-  const answer = parsedResponse.data.a + parsedResponse.data.b;
-
-  res.json({
-    answer,
-  });
-});
+  return result;
+}
