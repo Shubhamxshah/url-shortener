@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todo App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <main class="app" aria-labelledby="app-title">
+      <header class="app__header">
+        <h1 id="app-title">Todos</h1>
+        <div class="app__actions" role="group" aria-label="Bulk actions">
+          <button id="toggle-all" class="btn" title="Toggle all">Toggle all</button>
+          <button id="clear-completed" class="btn btn--danger" title="Clear completed">Clear completed</button>
+        </div>
+      </header>
+
+      <section class="composer" aria-label="Create todo">
+        <form id="new-todo-form" autocomplete="off">
+          <input id="new-todo-input" name="title" type="text" placeholder="What needs to be done?" aria-label="Todo title" required />
+          <button class="btn btn--primary" type="submit" title="Add todo">Add</button>
+        </form>
+        <div class="filters" role="group" aria-label="Filters">
+          <input id="search" type="search" placeholder="Search" aria-label="Search todos" />
+          <div class="segmented">
+            <input type="radio" id="filter-all"   name="filter" value="all" checked />
+            <label for="filter-all">All</label>
+            <input type="radio" id="filter-active" name="filter" value="active" />
+            <label for="filter-active">Active</label>
+            <input type="radio" id="filter-completed" name="filter" value="completed" />
+            <label for="filter-completed">Completed</label>
+          </div>
+        </div>
+      </section>
+
+      <section class="list" aria-label="Todo list">
+        <ul id="todo-list" class="todos" role="list"></ul>
+        <p id="empty-state" class="empty" hidden>No todos yet. Add one above!</p>
+      </section>
+
+      <footer class="footer">
+        <span id="todo-count" aria-live="polite"></span>
+        <div class="footer__right">
+          <button id="export" class="btn" title="Export JSON">Export</button>
+          <label class="import">
+            <input id="import" type="file" accept="application/json" hidden />
+            <span class="btn">Import</span>
+          </label>
+        </div>
+      </footer>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,167 @@
+:root {
+  --bg: #0b0f14;
+  --panel: #121822;
+  --text: #e6edf3;
+  --muted: #a3b1c2;
+  --primary: #4f8cff;
+  --primary-600: #3d73da;
+  --danger: #ff6b6b;
+  --success: #58d68d;
+  --border: #223046;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: radial-gradient(1000px 600px at 70% -100px, #1c2b46, transparent),
+              radial-gradient(800px 800px at 20% -300px, #17325e, transparent),
+              radial-gradient(1200px 800px at 80% 120%, #0d2145, transparent),
+              var(--bg);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.app {
+  width: min(900px, 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 120px), var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 20px 20px 8px;
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  margin: 4px 0 8px;
+}
+
+.app__actions { display: flex; gap: 8px; }
+
+.composer { margin-top: 8px; }
+
+#new-todo-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+input[type="text"], input[type="search"] {
+  width: 100%;
+  padding: 12px 14px;
+  background: #0e1520;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  outline: none;
+}
+
+input[type="text"]:focus, input[type="search"]:focus { border-color: var(--primary); box-shadow: 0 0 0 3px #4f8cff33; }
+
+.btn {
+  background: #0f1724;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn:hover { background: #121d2e; }
+.btn:active { transform: translateY(1px); }
+
+.btn--primary { background: linear-gradient(180deg, #4f8cff, #3d73da); border: none; }
+.btn--primary:hover { filter: brightness(1.05); }
+
+.btn--danger { background: linear-gradient(180deg, #ff6b6b, #d85a5a); border: none; }
+.btn--danger:hover { filter: brightness(1.05); }
+
+.filters { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; margin-top: 10px; }
+
+.segmented { display: inline-grid; grid-auto-flow: column; gap: 0; background: #0e1520; border: 1px solid var(--border); border-radius: 10px; padding: 2px; }
+.segmented > input { display: none; }
+.segmented > label {
+  padding: 8px 12px;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.segmented > input:checked + label { background: #162235; color: var(--text); }
+
+.list { margin-top: 14px; }
+
+.todos { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+
+.todo {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  background: #0e1520;
+  border: 1px solid var(--border);
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.todo__title { margin: 0; }
+.todo__meta { color: var(--muted); font-size: 12px; }
+
+.todo.completed .todo__title { text-decoration: line-through; color: #a9b3c0; }
+.todo.completed { opacity: 0.8; }
+
+.todo__left { display: grid; grid-auto-flow: column; gap: 10px; align-items: center; }
+
+.checkbox {
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+.todo__actions { display: grid; grid-auto-flow: column; gap: 6px; }
+
+.icon-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.icon-btn:hover { color: var(--text); background: #121d2e; }
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 18px 8px 6px;
+}
+
+.footer {
+  padding-top: 10px;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+}
+
+.footer__right { display: flex; gap: 8px; }
+
+@media (max-width: 600px) {
+  .app { padding: 16px 14px 8px; }
+  #new-todo-form { grid-template-columns: 1fr; }
+  .filters { grid-template-columns: 1fr; }
+}
